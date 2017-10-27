@@ -19,13 +19,13 @@
                         <DataGrid.ItemContainerStyle>
                             <Style TargetType="DataGridRow">
                                 <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                            </Style>
+                            </Style> //test
                         </DataGrid.ItemContainerStyle>
                     </DataGrid>
                 </Grid>
             </TabItem>
-        
+
         </TabControl>
-       
+
     </Grid>
 </Window>
