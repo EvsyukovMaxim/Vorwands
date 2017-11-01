@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using ServiceStack;
 using DoubleGIS.Vorwands.Client.Responses;
 
@@ -42,7 +44,7 @@ namespace DoubleGIS.Vorwands.Client
                 CookieContainer = new System.Net.CookieContainer(),
                 BaseUri = "http://uk-youla-iis/api"
             };
-            await client.PostAsync<object>("/Auth?format=json", new { Username = "local\\a", Password = "a" });
+            await client.PostAsync<object>("/Auth?format=json", new { Username = "local\\j.edeh", Password = "j.edeh" });
 
             return client;
         }

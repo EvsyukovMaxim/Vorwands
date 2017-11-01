@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="46,58,0,0" TextWrapping="Wrap" Text="Зацепка!!!!" VerticalAlignment="Top" Height="121" Width="204"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="46,58,0,0" TextWrapping="Wrap" Text="Зацепка" VerticalAlignment="Top" Height="121" Width="204"/>
 
     </Grid>
 </UserControl>

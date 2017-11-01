@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BrowserBehavior.cs" />
     <Compile Include="Client\Responses\Search.cs" />
     <Compile Include="Client\Responses\UserInfo.cs" />
     <Compile Include="Client\Responses\VorwandFullInfo.cs" />

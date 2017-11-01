@@ -5,12 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
         mc:Ignorable="d"
-        Title="VorwandWindow" Height="685.000" Width="650.000">
+        Title="VorwandWindow" Height="753" Width="701">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding CreatedName}"></TextBlock>
-            <TextBlock Text="{Binding Description}"></TextBlock>
-            <WebBrowser  Height="200"></WebBrowser>
+            <TextBlock Text="{Binding Name}"></TextBlock>
+            <WebBrowser local:WebBrowserBehavior.Body="{Binding Description}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>
     </Grid>
 </Window>
