@@ -26,9 +26,15 @@ namespace DoubleGIS.Vorwands
         public MainWindow()
         {
             InitializeComponent();
+                        
         }
 
         private async void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            await LoadData();
+        }
+
+        private async Task LoadData()
         {
             var client = new YouLaClient();
             var response = await client.GetCurrentUser();
@@ -46,12 +52,11 @@ namespace DoubleGIS.Vorwands
 
         private async void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGridRow row = sender as DataGridRow;
+            var row = sender as DataGridRow;
             if (row == null)
                 return;
 
             var item = row.DataContext as ResultItem;
-
             if (item == null)
                 return;
 
@@ -66,6 +71,11 @@ namespace DoubleGIS.Vorwands
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private async void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await LoadData();
         }
     }
 

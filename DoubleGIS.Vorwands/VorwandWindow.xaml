@@ -8,8 +8,8 @@
         Title="VorwandWindow" Height="753" Width="701">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding Name}"></TextBlock>
-            <WebBrowser local:WebBrowserBehavior.Body="{Binding Description}" Height="578" Margin="45,90,100,0"/>
+            <TextBlock Text="{Binding Name, StringFormat=Название:{0} }"></TextBlock>
+            <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding Description}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>
     </Grid>
 </Window>

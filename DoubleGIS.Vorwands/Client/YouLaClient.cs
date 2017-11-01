@@ -44,7 +44,7 @@ namespace DoubleGIS.Vorwands.Client
                 CookieContainer = new System.Net.CookieContainer(),
                 BaseUri = "http://uk-youla-iis/api"
             };
-            await client.PostAsync<object>("/Auth?format=json", new { Username = "local\\j.edeh", Password = "j.edeh" });
+            await client.PostAsync<object>("/Auth?format=json", new { Username = "local\\a", Password = "a" });
 
             return client;
         }
