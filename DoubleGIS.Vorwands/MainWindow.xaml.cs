@@ -33,13 +33,15 @@ namespace DoubleGIS.Vorwands
             var client = new YouLaClient();
             var response = await client.GetCurrentUser();
 
-            btnLoad.Content = "Загружаю";
+            BtnLoad.Content = "Загружаю";
 
-            textBlock.Text = "User: " + response.UserName;
+            TextBlock.Text = "Пользователь: " + response.UserName;
 
             var vorwandResult = await client.GetVorwands();
 
-            dataGrid.ItemsSource = vorwandResult.Paging.ResultItems;
+            DataGrid.ItemsSource = vorwandResult.Paging.ResultItems;
+
+            BtnLoad.Content = "Обновить";
         }
 
         private async void Row_DoubleClick(object sender, MouseButtonEventArgs e)
@@ -55,10 +57,15 @@ namespace DoubleGIS.Vorwands
 
 
             var client = new YouLaClient();
-            var vorwandFull = await client.GetFullVorwand(item.id);
+            var vorwandFull = await client.GetFullVorwand(item.Id);
 
             var vorwandWindow = new VorwandWindow { DataContext = vorwandFull };
             vorwandWindow.ShowDialog();
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 

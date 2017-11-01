@@ -36,14 +36,15 @@ namespace DoubleGIS.Vorwands.Client
 
         private async Task<JsonServiceClient> GetClient()
         {
-            var client = new JsonServiceClient();
-            client.AllowAutoRedirect = true;
-            client.CookieContainer = new System.Net.CookieContainer();
-            client.BaseUri = "http://uk-youla-iis/api";
+            var client = new JsonServiceClient
+            {
+                AllowAutoRedirect = true,
+                CookieContainer = new System.Net.CookieContainer(),
+                BaseUri = "http://uk-youla-iis/api"
+            };
             await client.PostAsync<object>("/Auth?format=json", new { Username = "local\\a", Password = "a" });
 
             return client;
-
         }
     }
 }

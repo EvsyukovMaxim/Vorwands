@@ -12,37 +12,37 @@ namespace DoubleGIS.Vorwands.Client.Responses
         [DisplayName("Название")]
         public string Title { get; set; }
 
-        public int assignedToUserId { get; set; }
-        public string assignedToUserName { get; set; }
-        public string branch { get; set; }
-        public int branchId { get; set; }
-        public object cardCode { get; set; }
-        public string cardCodeString { get; set; }
-        public string cardTitle { get; set; }
-        public DateTime creationDateUtc { get; set; }
-        public DateTime closeDateUtc { get; set; }
-        public bool hasAttachments { get; set; }
-        public bool hasLinkedVorwands { get; set; }
-        public bool hasLinkedFeature { get; set; }
-        public int id { get; set; }
-        public DateTime planDateUtc { get; set; }
-        public string priority { get; set; }
-        public string resolution { get; set; }
-        public string status { get; set; }
+        public int AssignedToUserId { get; set; }
+        public string AssignedToUserName { get; set; }
+        public string Branch { get; set; }
+        public int BranchId { get; set; }
+        public object CardCode { get; set; }
+        public string CardCodeString { get; set; }
+        public string CardTitle { get; set; }
+        public DateTime CreationDateUtc { get; set; }
+        public DateTime CloseDateUtc { get; set; }
+        public bool HasAttachments { get; set; }
+        public bool HasLinkedVorwands { get; set; }
+        public bool HasLinkedFeature { get; set; }
+        public int Id { get; set; }
+        public DateTime PlanDateUtc { get; set; }
+        public string Priority { get; set; }
+        public string Resolution { get; set; }
+        public string Status { get; set; }
 
 
-        public string type { get; set; }
-        public double linkedLat { get; set; }
-        public double linkedLon { get; set; }
+        public string Type { get; set; }
+        public double LinkedLat { get; set; }
+        public double LinkedLon { get; set; }
     }
 
     public class Paging
     {
         public List<ResultItem> ResultItems { get; set; }
-        public int total { get; set; }
-        public int from { get; set; }
-        public int pageSize { get; set; }
-        public bool ignorePaging { get; set; }
+        public int Total { get; set; }
+        public int From { get; set; }
+        public int PageSize { get; set; }
+        public bool IgnorePaging { get; set; }
     }
 
     public class VorwandSearchResult
