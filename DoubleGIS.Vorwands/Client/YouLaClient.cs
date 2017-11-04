@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -58,9 +59,11 @@ namespace DoubleGIS.Vorwands.Client
             {
                 AllowAutoRedirect = true,
                 CookieContainer = new System.Net.CookieContainer(),
-                BaseUri = "http://uk-youla-iis/api"
+                BaseUri = "http://uk-youla-iis/apiw",
+               
             };
-            await client.PostAsync<object>("/Auth?format=json", new { Username = "local\\a", Password = "a" });
+            client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            await client.PostAsync<object>("/auth/windows", null);
 
             return client;
         }

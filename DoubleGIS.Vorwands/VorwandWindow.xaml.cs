@@ -30,11 +30,12 @@ namespace DoubleGIS.Vorwands
         }
         
 
-        private async void TextBox_Editor(object sender, RoutedEventArgs e)
+        private async void TextBox_Editor(object sender, KeyEventArgs e)
         {
-            var vm = (ViewVorwandViewModel) DataContext;
+            if (e.Key != Key.Enter) return;
+            var vm = (ViewVorwandViewModel)DataContext;
 
-            if(!vm.IsNameChanged)
+            if (!vm.IsNameChanged)
                 return;
 
             var client = new YouLaClient();
@@ -42,5 +43,10 @@ namespace DoubleGIS.Vorwands
             await client.EditVorwandName(vm.Id, vm.VorwandName);
         }
 
+        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var vm = (ViewVorwandViewModel)DataContext;
+            vm.EditMode = true;
+        }
     }
 }

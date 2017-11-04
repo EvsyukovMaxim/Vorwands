@@ -8,13 +8,17 @@
         Title="VorwandWindow" Height="753" Width="701">
     <Grid >
         <StackPanel Orientation="Vertical">
-            <TextBox Text="{Binding VorwandName, UpdateSourceTrigger=PropertyChanged }">
-                <TextBox.Style>
-                    <Style TargetType="TextBox">
-                        <EventSetter Event="LostFocus" Handler="TextBox_Editor"/>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
+            <TextBlock Text="{Binding VorwandName }" 
+                       MouseDown="UIElement_OnMouseDown"
+                       Visibility="{Binding IsReadonlyVisible}"></TextBlock>
+            <StackPanel Orientation="Vertical" Visibility="{Binding IsEditVisible}">
+                <TextBox Text="{Binding VorwandName, UpdateSourceTrigger=PropertyChanged }"
+                         KeyDown="TextBox_Editor"
+                         >
+                   
+                </TextBox>
+                <Button Content="1"></Button>
+            </StackPanel>
             <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>
     </Grid>
