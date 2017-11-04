@@ -36,11 +36,19 @@ namespace DoubleGIS.Vorwands.Client
             }
         }
 
-        public async Task<VorwandFull> EditVorwandName(long vorwandId, string name)
+        public async Task EditVorwandName(long vorwandId, string name)
         {
             using (var client = await GetClient())
             {
-                return await client.GetAsync<VorwandFull>($"Vorwands/Edit/{vorwandId}/{name}?format=json");
+                await client.PostAsync<object>($"/Vorwands/Edit/{vorwandId}/Name", new { vorwandId, name});
+            }
+        }
+
+        public async Task EditVorwandDescription(long vorwandId, string description)
+        {
+            using (var client = await GetClient())
+            {
+                await client.PostAsync<object>($"/Vorwands/Edit/{vorwandId}/Description", new { vorwandId, description });
             }
         }
 

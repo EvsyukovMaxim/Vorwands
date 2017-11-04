@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using ServiceStack;
 using DoubleGIS.Vorwands.Client;
 using DoubleGIS.Vorwands.Client.Responses;
+using DoubleGIS.Vorwands.ViewModels;
+
 namespace DoubleGIS.Vorwands
 
 {
@@ -64,7 +66,7 @@ namespace DoubleGIS.Vorwands
             var client = new YouLaClient();
             var vorwandFull = await client.GetFullVorwand(item.Id);
 
-            var vorwandWindow = new VorwandWindow { DataContext = vorwandFull };
+            var vorwandWindow = new VorwandWindow { DataContext = new ViewVorwandViewModel(vorwandFull) };
             vorwandWindow.ShowDialog();
         }
 

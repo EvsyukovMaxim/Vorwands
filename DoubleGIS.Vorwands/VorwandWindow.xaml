@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
         mc:Ignorable="d"
         Title="VorwandWindow" Height="753" Width="701">
-    <Grid>
+    <Grid >
         <StackPanel Orientation="Vertical">
-            <TextBox Text="{Binding Name, StringFormat=Наименование зацепки: {0} }">
+            <TextBox Text="{Binding VorwandName, UpdateSourceTrigger=PropertyChanged }">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <EventSetter Event="LostFocus" Handler="TextBox_Editor"/>
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding Description}" Height="578" Margin="45,90,100,0"/>
+            <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>
     </Grid>
 </Window>

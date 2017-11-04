@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DoubleGIS.Vorwands.Client;
 using DoubleGIS.Vorwands.Client.Responses;
+using DoubleGIS.Vorwands.ViewModels;
+using HTMLConverter;
 
 namespace DoubleGIS.Vorwands
 {
@@ -25,25 +28,19 @@ namespace DoubleGIS.Vorwands
         {
             InitializeComponent();
         }
+        
 
         private async void TextBox_Editor(object sender, RoutedEventArgs e)
         {
-            var box = sender as TextBox;
+            var vm = (ViewVorwandViewModel) DataContext;
 
-            if (box != null)
-            {
-                var item = box.DataContext as VorwandFull;
-                if (item == null)
-                    return;
-            }
-
+            if(!vm.IsNameChanged)
+                return;
 
             var client = new YouLaClient();
-            var fullVorwand = new VorwandFull();
-            var editName = await client.EditVorwandName(fullVorwand.Id, fullVorwand.Name);
 
-            var vorwandWindow = new VorwandWindow { DataContext = editName };
-            vorwandWindow.ShowDialog();
+            await client.EditVorwandName(vm.Id, vm.VorwandName);
         }
+
     }
 }
