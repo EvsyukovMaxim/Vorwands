@@ -36,6 +36,14 @@ namespace DoubleGIS.Vorwands.Client
             }
         }
 
+        public async Task<VorwandFull> EditVorwandName(long vorwandId, string name)
+        {
+            using (var client = await GetClient())
+            {
+                return await client.GetAsync<VorwandFull>($"Vorwands/Edit/{vorwandId}/{name}?format=json");
+            }
+        }
+
         private async Task<JsonServiceClient> GetClient()
         {
             var client = new JsonServiceClient

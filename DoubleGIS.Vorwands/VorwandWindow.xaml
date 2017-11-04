@@ -8,7 +8,13 @@
         Title="VorwandWindow" Height="753" Width="701">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding Name, StringFormat=Название:{0} }"></TextBlock>
+            <TextBox Text="{Binding Name, StringFormat=Наименование зацепки: {0} }">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <EventSetter Event="LostFocus" Handler="EventSetter_OnHandler"/>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
             <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding Description}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>
     </Grid>
