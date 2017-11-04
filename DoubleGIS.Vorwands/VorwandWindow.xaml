@@ -11,7 +11,7 @@
             <TextBox Text="{Binding Name, StringFormat=Наименование зацепки: {0} }">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
-                        <EventSetter Event="LostFocus" Handler="EventSetter_OnHandler"/>
+                        <EventSetter Event="LostFocus" Handler="TextBox_Editor"/>
                     </Style>
                 </TextBox.Style>
             </TextBox>

@@ -26,7 +26,7 @@ namespace DoubleGIS.Vorwands
             InitializeComponent();
         }
 
-        private async void EventSetter_OnHandler(object sender, RoutedEventArgs e)
+        private async void TextBox_Editor(object sender, RoutedEventArgs e)
         {
             var box = sender as TextBox;
 
