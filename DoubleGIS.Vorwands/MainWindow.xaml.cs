@@ -28,7 +28,6 @@ namespace DoubleGIS.Vorwands
         public MainWindow()
         {
             InitializeComponent();
-                        
         }
 
         private async void btnLoad_Click(object sender, RoutedEventArgs e)
