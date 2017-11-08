@@ -42,7 +42,7 @@ namespace DoubleGIS.Vorwands
 
             BtnLoad.Content = "Загружаю";
 
-            TextBlock.Text = "Пользователь: " + response.UserName;
+            UserTab.Text = "Пользователь: " + response.UserName;
 
             var vorwandResult = await client.GetVorwands();
 

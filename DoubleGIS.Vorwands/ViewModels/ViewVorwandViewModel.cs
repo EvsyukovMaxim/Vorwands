@@ -9,7 +9,7 @@ namespace DoubleGIS.Vorwands.ViewModels
     public class ViewVorwandViewModel : INotifyPropertyChanged
     {
         private readonly VorwandFull _model;
-        private string _vorwandName;
+        private readonly string _vorwandName;
         private bool _editMode;
         private Visibility _isReadonlyVisible;
         private Visibility _isEditVisible;

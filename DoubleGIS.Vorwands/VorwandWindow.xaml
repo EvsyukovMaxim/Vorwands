@@ -11,13 +11,11 @@
             <TextBlock Text="{Binding VorwandName }" 
                        MouseDown="UIElement_OnMouseDown"
                        Visibility="{Binding IsReadonlyVisible}"></TextBlock>
-            <StackPanel Orientation="Vertical" Visibility="{Binding IsEditVisible}">
+            <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditVisible}">
                 <TextBox Text="{Binding VorwandName, UpdateSourceTrigger=PropertyChanged }"
-                         KeyDown="TextBox_Editor"
-                         >
-                   
-                </TextBox>
-                <Button Content="1"></Button>
+                         Width="623"></TextBox>
+                <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
+                <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
             </StackPanel>
             <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>

@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
         mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
-        Title="MainWindow" Height="688.5" Width="1271.5">
+        Title="Зацепки" Height="688.5" Width="1271.5">
     <Grid>
         <TabControl>
             <TabItem Header="Поиск">
                 <Grid>
                     <Button  x:Name="BtnLoad" Content="Обновить" HorizontalAlignment="Left" Margin="1166,61,0,0" VerticalAlignment="Top" Width="75" Height="20" Click="btnLoad_Click"/>
-                    <TextBlock x:Name="TextBlock" HorizontalAlignment="Left" Margin="898,10,0,0" TextWrapping="Wrap" Text="Пользователь: " VerticalAlignment="Top" Width="350"/>
+                    <TextBlock x:Name="UserTab" HorizontalAlignment="Right" Margin="0,10,0,0" TextWrapping="Wrap" Text="Пользователь: " VerticalAlignment="Top" Width="185"/>
+                    <TextBlock x:Name="GreetingBlock" HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Привет, землянин! Выполняй свою работу! Зарабатывай на iPhone!" VerticalAlignment="Top" Width="393"/>
                     <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" Height="558" Margin="10,61,0,0" VerticalAlignment="Top" Width="1151" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged" >
                         <DataGrid.Resources>
-                            <Style x:Key="wordWrapStyleView" TargetType="{x:Type TextBlock}">
+                            <Style x:Key="WordWrapStyleView" TargetType="{x:Type TextBlock}">
                                 <Setter Property="TextWrapping" Value="Wrap"/>
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id, Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Зацепка" Binding="{Binding Title, Mode=OneWay}" ElementStyle="{StaticResource wordWrapStyleView}" Width="*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Карточка" Binding="{Binding CardTitle, Mode=OneWay}" Width="*" ElementStyle="{StaticResource wordWrapStyleView}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Зацепка" Binding="{Binding Title, Mode=OneWay}" ElementStyle="{StaticResource WordWrapStyleView}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Карточка" Binding="{Binding CardTitle, Mode=OneWay}" Width="*" ElementStyle="{StaticResource WordWrapStyleView}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Создана" Binding="{Binding CreationDateUtc, Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Статус" Binding="{Binding Status, Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Проект" Binding="{Binding Branch, Mode=OneWay}"></DataGridTextColumn>

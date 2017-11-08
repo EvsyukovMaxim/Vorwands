@@ -30,9 +30,8 @@ namespace DoubleGIS.Vorwands
         }
         
 
-        private async void TextBox_Editor(object sender, KeyEventArgs e)
+        private async void Click_BtnOk(object sender, RoutedEventArgs e)
         {
-            if (e.Key != Key.Enter) return;
             var vm = (ViewVorwandViewModel)DataContext;
 
             if (!vm.IsNameChanged)
@@ -41,6 +40,12 @@ namespace DoubleGIS.Vorwands
             var client = new YouLaClient();
 
             await client.EditVorwandName(vm.Id, vm.VorwandName);
+        }
+
+        private void Click_BtnCancel(object sender, RoutedEventArgs e)
+        {
+            var vm = (ViewVorwandViewModel)DataContext;
+            vm.EditMode = false;
         }
 
         private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
