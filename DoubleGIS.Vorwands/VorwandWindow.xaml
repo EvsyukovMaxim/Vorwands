@@ -17,6 +17,7 @@
                 <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
                 <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
             </StackPanel>
+            <TextBlock Text="{Binding VorwandId,StringFormat=Id: {0}}" ></TextBlock>
             <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
         </StackPanel>
     </Grid>

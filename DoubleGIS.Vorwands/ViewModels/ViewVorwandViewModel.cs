@@ -43,13 +43,14 @@ namespace DoubleGIS.Vorwands.ViewModels
             }
         }
 
+        public long VorwandId => _model.Id;
         public long Id => _model.Id;
         public bool IsNameChanged => _model.Name != _vorwandName;
 
 
         public bool EditMode
         {
-            get { return _editMode; }
+            get => _editMode;
             set
             {
 
@@ -62,13 +63,13 @@ namespace DoubleGIS.Vorwands.ViewModels
 
         public Visibility IsReadonlyVisible
         {
-            get { return _isReadonlyVisible; }
+            get => _isReadonlyVisible;
             set { _isReadonlyVisible = value; OnPropertyChanged(); }
         }
 
         public Visibility IsEditVisible
         {
-            get { return _isEditVisible; }
+            get => _isEditVisible;
             set { _isEditVisible = value;
                 OnPropertyChanged();
             }
