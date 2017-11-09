@@ -9,7 +9,7 @@ namespace DoubleGIS.Vorwands
     /// <summary>
     /// Interaction logic for VorwandWindow.xaml
     /// </summary>
-    public partial class VorwandWindow : Window
+    public partial class VorwandWindow
     {
         public VorwandWindow()
         {
