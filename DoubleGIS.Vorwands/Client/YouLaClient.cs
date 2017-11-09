@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using ServiceStack;
 using DoubleGIS.Vorwands.Client.Responses;
 
@@ -18,6 +12,13 @@ namespace DoubleGIS.Vorwands.Client
             using (var client = await GetClient())
             {
                 return await client.GetAsync<UserInfo>("/CurrentUser?format=json");
+            }
+        }
+        public async Task<VorwandComments> GetComments()
+        {
+            using (var client = await GetClient())
+            {
+                return await client.GetAsync<VorwandComments>("/Comments?format=json");
             }
         }
 

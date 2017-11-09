@@ -43,7 +43,6 @@ namespace DoubleGIS.Vorwands.ViewModels
             }
         }
 
-        public long VorwandId => _model.Id;
         public long Id => _model.Id;
         public bool IsNameChanged => _model.Name != _vorwandName;
 

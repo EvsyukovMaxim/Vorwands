@@ -5,20 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
         mc:Ignorable="d"
-        Title="VorwandWindow" Height="753" Width="701">
+        Title="VorwandWindow" Height="838" Width="701">
     <Grid >
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding VorwandName }" 
+            <TextBlock Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}" 
                        MouseDown="UIElement_OnMouseDown"
                        Visibility="{Binding IsReadonlyVisible}"></TextBlock>
             <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditVisible}">
-                <TextBox Text="{Binding VorwandName, UpdateSourceTrigger=PropertyChanged }"
+                <TextBox Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}"
                          Width="623"></TextBox>
                 <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
                 <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
             </StackPanel>
-            <TextBlock Text="{Binding VorwandId,StringFormat=Id: {0}}" ></TextBlock>
+            <TextBlock Text="{Binding Id,StringFormat=Id: {0}}" ></TextBlock>
             <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
+            <TextBox Text="{Binding GetVorwandComments,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"></TextBox>
         </StackPanel>
     </Grid>
 </Window>

@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Client\Responses\VorwandComments.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RichTextBoxBehavior.cs" />
     <Compile Include="Client\Responses\Search.cs" />
