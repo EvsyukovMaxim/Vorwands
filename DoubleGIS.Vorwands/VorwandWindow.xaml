@@ -12,14 +12,24 @@
                        MouseDown="UIElement_OnMouseDown"
                        Visibility="{Binding IsReadonlyVisible}"></TextBlock>
             <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditVisible}">
-                <TextBox Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}"
+                <TextBox  Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}"
                          Width="623"></TextBox>
                 <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
                 <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
             </StackPanel>
             <TextBlock Text="{Binding Id,StringFormat=Id: {0}}" ></TextBlock>
-            <RichTextBox local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
-            <TextBox Text="{Binding GetVorwandComments,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"></TextBox>
+            <RichTextBox MaxHeight="100" local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
+            <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" ItemsSource="{Binding Comments}" Height="558" Margin="10,61,0,0" Width="1151" AutoGenerateColumns="False" >
+                <DataGrid.Resources>
+                    <Style x:Key="WordWrapStyleView" TargetType="{x:Type TextBlock}">
+                        <Setter Property="TextWrapping" Value="Wrap"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Зацепка" Binding="{Binding Text, Mode=OneWay}" ElementStyle="{StaticResource WordWrapStyleView}" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Window>

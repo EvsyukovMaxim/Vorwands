@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using DoubleGIS.Vorwands.Annotations;
+using DoubleGIS.Vorwands.Client;
 using DoubleGIS.Vorwands.Client.Responses;
 
 namespace DoubleGIS.Vorwands.ViewModels
@@ -14,11 +16,15 @@ namespace DoubleGIS.Vorwands.ViewModels
         private Visibility _isReadonlyVisible;
         private Visibility _isEditVisible;
 
+        public ObservableCollection<Comment> Comments { get; set; }
+
         public ViewVorwandViewModel(VorwandFull model)
         {
             _model = model;
             _vorwandName = model.Name;
             EditMode = false;
+
+            Comments = new ObservableCollection<Comment>();
         }
 
         public string VorwandName
@@ -30,6 +36,11 @@ namespace DoubleGIS.Vorwands.ViewModels
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsNameEmpty));
             }
+        }
+
+        public void RevertVorwandNameChange()
+        {
+            VorwandName = _vorwandName;
         }
 
         public string VorwandDescription
@@ -71,6 +82,19 @@ namespace DoubleGIS.Vorwands.ViewModels
             get => _isEditVisible;
             set { _isEditVisible = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public async void LoadComments()
+        {
+            var client = new YouLaClient();
+            var comments = await client.GetComments(_model.Id);
+
+            Comments.Clear();
+
+            foreach (var commentsComment in comments.Comments)
+            {
+                Comments.Add(commentsComment);
             }
         }
 

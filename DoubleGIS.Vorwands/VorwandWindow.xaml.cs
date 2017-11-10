@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using DoubleGIS.Vorwands.Client;
@@ -15,7 +16,15 @@ namespace DoubleGIS.Vorwands
         {
             InitializeComponent();
         }
-        
+
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            var vm = (ViewVorwandViewModel)DataContext;
+            vm.LoadComments();
+        }
+
         private async void Click_BtnOk(object sender, RoutedEventArgs e)
         {
             var vm = (ViewVorwandViewModel)DataContext;
@@ -32,6 +41,7 @@ namespace DoubleGIS.Vorwands
         private void Click_BtnCancel(object sender, RoutedEventArgs e)
         {
             var vm = (ViewVorwandViewModel)DataContext;
+            vm.RevertVorwandNameChange();
             vm.EditMode = false;
         }
 
@@ -39,12 +49,6 @@ namespace DoubleGIS.Vorwands
         {
             var vm = (ViewVorwandViewModel)DataContext;
             vm.EditMode = true;
-        }
-
-        private async Task GetVorwandComments()
-        {
-            var client = new YouLaClient();
-            await client.GetComments();
         }
     }
 }
