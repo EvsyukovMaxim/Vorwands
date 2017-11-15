@@ -5,31 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
         mc:Ignorable="d"
-        Title="VorwandWindow" Height="838" Width="701">
+        Title="VorwandWindow" Height="708" Width="701">
     <Grid >
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}" 
-                       MouseDown="UIElement_OnMouseDown"
-                       Visibility="{Binding IsReadonlyVisible}"></TextBlock>
-            <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditVisible}">
-                <TextBox  Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}"
-                         Width="623"></TextBox>
-                <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
-                <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}" 
+                           MouseDown="ClickMouseToEditVorwandName"
+                           Visibility="{Binding IsReadonlyVisible}"></TextBlock>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditVisible}">
+                    <TextBox  Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}"
+                             Width="623"></TextBox>
+                    <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
+                    <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
+                </StackPanel>
+                <TextBlock Text="{Binding Id,StringFormat=Id: {0}}" ></TextBlock>
+                <RichTextBox MaxHeight="1000" local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="472" Margin="40,20,40,0"/>
+                <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" ItemsSource="{Binding Comments}" Height="300" MaxHeight="300" Margin="10,30,0,0" Width="673" AutoGenerateColumns="False" >
+                    <DataGrid.Resources>
+                        <Style x:Key="WordWrapStyleView" TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding CreationDateUtc, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Зацепка" Binding="{Binding Text, Mode=OneWay}" ElementStyle="{StaticResource WordWrapStyleView}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
-            <TextBlock Text="{Binding Id,StringFormat=Id: {0}}" ></TextBlock>
-            <RichTextBox MaxHeight="100" local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="578" Margin="45,90,100,0"/>
-            <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" ItemsSource="{Binding Comments}" Height="558" Margin="10,61,0,0" Width="1151" AutoGenerateColumns="False" >
-                <DataGrid.Resources>
-                    <Style x:Key="WordWrapStyleView" TargetType="{x:Type TextBlock}">
-                        <Setter Property="TextWrapping" Value="Wrap"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Зацепка" Binding="{Binding Text, Mode=OneWay}" ElementStyle="{StaticResource WordWrapStyleView}" Width="*"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

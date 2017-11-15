@@ -45,7 +45,7 @@ namespace DoubleGIS.Vorwands
             vm.EditMode = false;
         }
 
-        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void ClickMouseToEditVorwandName(object sender, MouseButtonEventArgs e)
         {
             var vm = (ViewVorwandViewModel)DataContext;
             vm.EditMode = true;
