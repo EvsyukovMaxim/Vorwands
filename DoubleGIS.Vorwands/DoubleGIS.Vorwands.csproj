@@ -79,6 +79,7 @@
     <Compile Include="Client\Responses\UserInfo.cs" />
     <Compile Include="Client\Responses\VorwandFullInfo.cs" />
     <Compile Include="Client\YouLaClient.cs" />
+    <Compile Include="ViewModels\ViewCommentViewModel.cs" />
     <Compile Include="ViewModels\ViewVorwandViewModel.cs" />
     <Compile Include="VorwandContentControl.xaml.cs">
       <DependentUpon>VorwandContentControl.xaml</DependentUpon>

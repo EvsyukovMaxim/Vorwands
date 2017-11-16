@@ -15,7 +15,6 @@ namespace DoubleGIS.Vorwands.ViewModels
         private bool _editMode;
         private Visibility _isReadonlyVisible;
         private Visibility _isEditVisible;
-        private string _commentText;
 
         public ObservableCollection<Comment> Comments { get; set; }
 
@@ -97,15 +96,6 @@ namespace DoubleGIS.Vorwands.ViewModels
                 Comments.Add(commentsComment);
             }
         }
-
-        public string CommentText
-        {
-            get => _commentText;
-            set {_commentText = value;
-                OnPropertyChanged();
-            }
-        }
-
 
         public bool IsNameEmpty => string.IsNullOrWhiteSpace(_model.Name);
         public event PropertyChangedEventHandler PropertyChanged;
