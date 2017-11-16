@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using DoubleGIS.Vorwands.Client;
+using DoubleGIS.Vorwands.Client.Responses;
 using DoubleGIS.Vorwands.ViewModels;
 
 namespace DoubleGIS.Vorwands
@@ -49,6 +51,25 @@ namespace DoubleGIS.Vorwands
         {
             var vm = (ViewVorwandViewModel)DataContext;
             vm.EditMode = true;
+        }
+
+        private async void EventSetter_OnHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+
+            var row = sender as DataGridCell;
+            if (row == null)
+                return;
+
+            var item = row.DataContext as Comment;
+            if (item == null)
+                return;
+
+
+            var client = new YouLaClient();
+            var comments = await client.GetComments(item.Id);
+            DataGrid.ItemsSource = comments.Comments.ToString();
         }
     }
 }

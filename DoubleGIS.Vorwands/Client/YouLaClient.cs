@@ -14,11 +14,20 @@ namespace DoubleGIS.Vorwands.Client
                 return await client.GetAsync<UserInfo>("/CurrentUser?format=json");
             }
         }
+
         public async Task<CommentsResponse> GetComments(long vorwandId)
         {
             using (var client = await GetClient())
             {
                 return await client.GetAsync<CommentsResponse>($"/Comments?type=4&entityId={vorwandId}&format=json");
+            }
+        }
+
+        public async Task UpdateComments(long commentId, string commentText)
+        {
+            using (var client = await GetClient())
+            {
+                await client.PostAsync<object>("/Comment/Update", new { commentId, commentText });
             }
         }
 

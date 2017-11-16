@@ -28,7 +28,7 @@
                     </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Дата" Binding="{Binding CreationDateUtc, Mode=OneWay}"/>
-                        <DataGridTextColumn Header="Зацепка" Binding="{Binding Text, Mode=OneWay}" ElementStyle="{StaticResource WordWrapStyleView}" Width="*"/>
+                        <DataGridTextColumn Header="Зацепка" Binding="{Binding Text, Mode=TwoWay}" ElementStyle="{StaticResource WordWrapStyleView}"  Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
