@@ -53,23 +53,21 @@ namespace DoubleGIS.Vorwands
             vm.EditMode = true;
         }
 
-        private async void EventSetter_OnHandler(object sender, KeyEventArgs e)
+
+        private async void UIElement_OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key != Key.Enter)
+            if(e.Key != Key.Enter)
                 return;
+            
 
-            var row = sender as DataGridCell;
-            if (row == null)
+            var cm = (ViewCommentViewModel) ((FrameworkElement) sender).DataContext;
+
+            if (!cm.IsCommentChanged)
                 return;
-
-            var item = row.DataContext as Comment;
-            if (item == null)
-                return;
-
 
             var client = new YouLaClient();
-            var comments = await client.GetComments(item.Id);
-            DataGrid.ItemsSource = comments.Comments.ToString();
+
+            await client.UpdateComments(cm.Id, cm.CommentText);
         }
     }
 }

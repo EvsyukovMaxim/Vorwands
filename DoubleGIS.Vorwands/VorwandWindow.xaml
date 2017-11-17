@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
+        xmlns:data="clr-namespace:System.Data;assembly=System.Data"
         mc:Ignorable="d"
         Title="VorwandWindow" Height="708" Width="701">
     <Grid >
@@ -28,7 +29,22 @@
                     </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Дата" Binding="{Binding CreationDateUtc, Mode=OneWay}"/>
-                        <DataGridTextColumn Header="Зацепка" Binding="{Binding Text, Mode=TwoWay}" ElementStyle="{StaticResource WordWrapStyleView}"  Width="*"/>
+                        <!--Binding="{Binding Text, Mode=TwoWay}" ElementStyle="{StaticResource WordWrapStyleView}"-->
+                        <DataGridTemplateColumn Header="Зацепка" Width="*">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CommentText}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="UIElement_OnKeyDown">
+                                    </TextBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

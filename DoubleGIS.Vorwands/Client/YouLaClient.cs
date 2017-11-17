@@ -23,11 +23,11 @@ namespace DoubleGIS.Vorwands.Client
             }
         }
 
-        public async Task UpdateComments(long commentId, string commentText)
+        public async Task UpdateComments(long commentId, string text)
         {
             using (var client = await GetClient())
             {
-                await client.PostAsync<object>("/Comment/Update", new { commentId, commentText });
+                await client.PostAsync<object>("/json/reply/UpdateCommentRequest", new { commentId, text });
             }
         }
 

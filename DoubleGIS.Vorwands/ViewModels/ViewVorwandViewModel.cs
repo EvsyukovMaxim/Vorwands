@@ -16,14 +16,14 @@ namespace DoubleGIS.Vorwands.ViewModels
         private Visibility _isReadonlyVisible;
         private Visibility _isEditVisible;
 
-        public ObservableCollection<Comment> Comments { get; set; }
+        public ObservableCollection<ViewCommentViewModel> Comments { get; set; }
 
         public ViewVorwandViewModel(VorwandFull model)
         {
             _model = model;
             _vorwandName = model.Name;
             EditMode = false;
-            Comments = new ObservableCollection<Comment>();
+            Comments = new ObservableCollection<ViewCommentViewModel>();
         }
 
         public string VorwandName
@@ -93,7 +93,7 @@ namespace DoubleGIS.Vorwands.ViewModels
 
             foreach (var commentsComment in comments.Comments)
             {
-                Comments.Add(commentsComment);
+                Comments.Add(new ViewCommentViewModel(commentsComment));
             }
         }
 
