@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DoubleGIS.Vorwands.Client;
-using DoubleGIS.Vorwands.Client.Responses;
 using DoubleGIS.Vorwands.ViewModels;
+using ServiceStack;
 
 namespace DoubleGIS.Vorwands
 {
@@ -32,33 +31,31 @@ namespace DoubleGIS.Vorwands
             var vm = (ViewVorwandViewModel)DataContext;
 
             if (!vm.IsNameChanged)
-                return;
+            { vm.VorwandNameEditMode = false; return;}
 
             var client = new YouLaClient();
 
             await client.EditVorwandName(vm.Id, vm.VorwandName);
-            vm.EditMode = false;
+            vm.VorwandNameEditMode = false;
         }
 
         private void Click_BtnCancel(object sender, RoutedEventArgs e)
         {
             var vm = (ViewVorwandViewModel)DataContext;
             vm.RevertVorwandNameChange();
-            vm.EditMode = false;
+            vm.VorwandNameEditMode = false;
         }
-
+        
         private void ClickMouseToEditVorwandName(object sender, MouseButtonEventArgs e)
         {
             var vm = (ViewVorwandViewModel)DataContext;
-            vm.EditMode = true;
+            vm.VorwandNameEditMode = true;
         }
 
-
-        private async void UIElement_OnKeyDown(object sender, KeyEventArgs e)
+        private async void UpdateCommentText(object sender, KeyEventArgs e)
         {
             if(e.Key != Key.Enter)
                 return;
-            
 
             var cm = (ViewCommentViewModel) ((FrameworkElement) sender).DataContext;
 
@@ -67,7 +64,34 @@ namespace DoubleGIS.Vorwands
 
             var client = new YouLaClient();
 
-            await client.UpdateComments(cm.Id, cm.CommentText);
+            await client.UpdateComment(cm.CommentId, cm.CommentText);
+        }
+        private void AddNewComment_OnClick(object sender, RoutedEventArgs e)
+        {
+            var vm = (ViewVorwandViewModel)DataContext;
+            vm.AddCommentEditMode = true;
+        }
+        private async void SaveNewCommentKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+            var vm = (ViewVorwandViewModel)DataContext;
+            var client = new YouLaClient();
+
+            await client.AddComment("Vorwand",vm.Id, NewCommentTextBox.Text);
+            NewCommentTextBox.Text = "";
+            vm.AddCommentEditMode = false;
+        }
+        private void CancelAddNewComment_OnClick(object sender, RoutedEventArgs e)
+        {
+            var vm = (ViewVorwandViewModel)DataContext;
+            NewCommentTextBox.Text = "";
+            vm.AddCommentEditMode = false;
+        }
+
+        private void DataGridComments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

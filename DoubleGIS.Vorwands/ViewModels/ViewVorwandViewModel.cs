@@ -22,7 +22,7 @@ namespace DoubleGIS.Vorwands.ViewModels
         {
             _model = model;
             _vorwandName = model.Name;
-            EditMode = false;
+            VorwandNameEditMode = false;
             Comments = new ObservableCollection<ViewCommentViewModel>();
         }
 
@@ -56,7 +56,7 @@ namespace DoubleGIS.Vorwands.ViewModels
         public bool IsNameChanged => _model.Name != _vorwandName;
 
 
-        public bool EditMode
+        public bool VorwandNameEditMode
         {
             get => _editMode;
             set
@@ -64,22 +64,53 @@ namespace DoubleGIS.Vorwands.ViewModels
 
                 _editMode = value;
 
-                IsReadonlyVisible = _editMode ? Visibility.Collapsed : Visibility.Visible;
-                IsEditVisible = _editMode ? Visibility.Visible : Visibility.Collapsed;
+                IsVorwandNameReadonlyVisible = _editMode ? Visibility.Collapsed : Visibility.Visible;
+                IsVorwandNameEditVisible = _editMode ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        public Visibility IsReadonlyVisible
+        public Visibility IsVorwandNameReadonlyVisible
         {
             get => _isReadonlyVisible;
             set { _isReadonlyVisible = value;
                 OnPropertyChanged(); }
         }
 
-        public Visibility IsEditVisible
+        public Visibility IsVorwandNameEditVisible
         {
             get => _isEditVisible;
             set { _isEditVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool AddCommentEditMode
+        {
+            get => _editMode;
+            set
+            {
+
+                _editMode = value;
+
+                IsAddCommentReadonlyVisible = _editMode ? Visibility.Collapsed : Visibility.Visible;
+                IsAddCommentEditVisible = _editMode ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+        public Visibility IsAddCommentReadonlyVisible
+        {
+            get => _isReadonlyVisible;
+            set
+            {
+                _isReadonlyVisible = value;
+                OnPropertyChanged();
+            }
+        }
+        public Visibility IsAddCommentEditVisible
+        {
+            get => _isEditVisible;
+            set
+            {
+                _isEditVisible = value;
                 OnPropertyChanged();
             }
         }

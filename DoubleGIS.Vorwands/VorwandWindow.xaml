@@ -4,44 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoubleGIS.Vorwands"
-        xmlns:data="clr-namespace:System.Data;assembly=System.Data"
         mc:Ignorable="d"
-        Title="VorwandWindow" Height="708" Width="701">
+        Title="VorwandWindow" Height="804" Width="710">
     <Grid >
-        <ScrollViewer>
-            <StackPanel Orientation="Vertical">
+        <ScrollViewer >
+            <StackPanel x:Name="FullVorwandNameStack" Orientation="Vertical">
                 <TextBlock Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}" 
                            MouseDown="ClickMouseToEditVorwandName"
-                           Visibility="{Binding IsReadonlyVisible}"></TextBlock>
-                <StackPanel Orientation="Horizontal" Visibility="{Binding IsEditVisible}">
+                           Visibility="{Binding IsVorwandNameReadonlyVisible}"></TextBlock>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding IsVorwandNameEditVisible}">
                     <TextBox  Text="{Binding VorwandName,UpdateSourceTrigger=PropertyChanged}"
                              Width="623"></TextBox>
                     <Button x:Name="BtnOk" Content="OK" Click="Click_BtnOk"></Button>
                     <Button x:Name="BtnCancel" Content="Cancel" Click="Click_BtnCancel"/>
                 </StackPanel>
-                <TextBlock Text="{Binding Id,StringFormat=Id: {0}}" ></TextBlock>
-                <RichTextBox MaxHeight="1000" local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="472" Margin="40,20,40,0"/>
-                <DataGrid x:Name="DataGrid" HorizontalAlignment="Left" ItemsSource="{Binding Comments}" Height="300" MaxHeight="300" Margin="10,30,0,0" Width="673" AutoGenerateColumns="False" >
+                <TextBlock Text="{Binding Id,StringFormat=Id: {0}}"></TextBlock>
+                <RichTextBox MaxHeight="1000" local:HtmlRichTextBoxBehavior.Text="{Binding VorwandDescription}" Height="472" Margin="10,20,10,0"/>
+
+            <StackPanel x:Name="AddNewCommentStack" Orientation="Vertical" Margin="10,20,0,5" HorizontalAlignment="Left" Height="60" Width="227">
+                    <Button x:Name="AddNewComment" Content="+ Комментарий" Click="AddNewComment_OnClick" Height="20"/>
+                    <StackPanel x:Name="Stack2" Visibility="{Binding IsAddCommentEditVisible}" Orientation="Horizontal" Height="20">
+                    <TextBox x:Name="NewCommentTextBox" KeyDown="SaveNewCommentKeyDown" Width="180" Height="20"></TextBox>
+                        <Button x:Name="CancelAddNewComment" Content="Cancel" Click="CancelAddNewComment_OnClick" Width="46" Height="20"></Button>
+                </StackPanel>
+            </StackPanel>
+                
+                <DataGrid x:Name="DataGridComments" HorizontalAlignment="Left" ItemsSource="{Binding Comments}" Height="150" MaxHeight="300" Margin="10,0,0,0" Width="665" AutoGenerateColumns="False" SelectionChanged="DataGridComments_SelectionChanged" >
                     <DataGrid.Resources>
                         <Style x:Key="WordWrapStyleView" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="Wrap"/>
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Дата" Binding="{Binding CreationDateUtc, Mode=OneWay}"/>
-                        <!--Binding="{Binding Text, Mode=TwoWay}" ElementStyle="{StaticResource WordWrapStyleView}"-->
+                        <DataGridTextColumn Header="Id" Binding="{Binding CommentId, Mode=OneWay}"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding CommentCreationDateUtc, Mode=OneWay}" ElementStyle="{StaticResource WordWrapStyleView}" Width="100"/>
                         <DataGridTemplateColumn Header="Зацепка" Width="*">
-
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding CommentText}"></TextBlock>
+                                    <TextBlock Text="{Binding CommentText}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
-
                             <DataGridTemplateColumn.CellEditingTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="UIElement_OnKeyDown">
-                                    </TextBox>
+                                    <TextBox Text="{Binding CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="UpdateCommentText"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>

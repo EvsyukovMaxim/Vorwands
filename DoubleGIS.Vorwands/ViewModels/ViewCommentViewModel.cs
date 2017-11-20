@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using System.Windows;
 using DoubleGIS.Vorwands.Annotations;
-using DoubleGIS.Vorwands.Client;
 using DoubleGIS.Vorwands.Client.Responses;
 
 namespace DoubleGIS.Vorwands.ViewModels
@@ -18,7 +17,8 @@ namespace DoubleGIS.Vorwands.ViewModels
         {
             _model = model;
             _commentText = _model.Text;
-            Id = _model.Id;
+            CommentCreationDateUtc = _model.CreationDateUtc;
+            CommentId = _model.Id;
             
         }
 
@@ -28,8 +28,8 @@ namespace DoubleGIS.Vorwands.ViewModels
             set => _model.Text = value;
         }
 
-        public long Id { get;}
-
+        public long CommentId { get;}
+        public string CommentCreationDateUtc { get; }
         public bool IsNameEmpty => string.IsNullOrWhiteSpace(_model.Text);
         public bool IsCommentChanged => _model.Text != _commentText;
 
