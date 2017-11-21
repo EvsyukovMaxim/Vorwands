@@ -19,7 +19,7 @@ namespace DoubleGIS.Vorwands
             InitializeComponent();
         }
 
-        private async void btnLoad_Click(object sender, RoutedEventArgs e)
+        private async void BtnLoad_Click(object sender, RoutedEventArgs e)
         {
             await LoadData();
         }
@@ -58,7 +58,7 @@ namespace DoubleGIS.Vorwands
             vorwandWindow.ShowDialog();
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
