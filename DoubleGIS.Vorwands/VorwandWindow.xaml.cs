@@ -88,6 +88,13 @@ namespace DoubleGIS.Vorwands
             NewCommentTextBox.Text = "";
             vm.AddCommentEditMode = false;
         }
+        private async void DeleteVorwandCommentClickButton(object sender, RoutedEventArgs e)
+        {
+            var cm = (ViewCommentViewModel)((FrameworkElement)sender).DataContext;
+            var client = new YouLaClient();
+
+            await client.DeleteComment(cm.CommentId);
+        }
 
         private void DataGridComments_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

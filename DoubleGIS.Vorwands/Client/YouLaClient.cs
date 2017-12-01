@@ -38,6 +38,13 @@ namespace DoubleGIS.Vorwands.Client
                 await client.PostAsync<object>("/json/reply/AddCommentRequest", new { type, entityId, text });
             }
         }
+        public async Task DeleteComment(long commentsIds)
+        {
+            using (var client = await GetClient())
+            {
+                await client.PostAsync<object>("/json/reply/DeleteCommentsRequest", new { commentsIds });
+            }
+        }
 
         public async Task<VorwandSearchResult> GetVorwands()
         {

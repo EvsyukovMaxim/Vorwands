@@ -24,7 +24,7 @@
             <StackPanel x:Name="AddNewCommentStack" Orientation="Vertical" Margin="10,20,0,5" HorizontalAlignment="Left" Height="60" Width="227">
                     <Button x:Name="AddNewComment" Content="+ Комментарий" Click="AddNewComment_OnClick" Height="20"/>
                     <StackPanel x:Name="Stack2" Visibility="{Binding IsAddCommentEditVisible}" Orientation="Horizontal" Height="20">
-                    <TextBox x:Name="NewCommentTextBox" KeyDown="SaveNewCommentKeyDown" Width="180" Height="20"></TextBox>
+                    <TextBox x:Name="NewCommentTextBox" KeyDown="SaveNewCommentKeyDown" Width="181" Height="20"></TextBox>
                         <Button x:Name="CancelAddNewComment" Content="Cancel" Click="CancelAddNewComment_OnClick" Width="46" Height="20"></Button>
                 </StackPanel>
             </StackPanel>
@@ -49,6 +49,13 @@
                                     <TextBox Text="{Binding CommentText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" KeyDown="UpdateCommentText"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Х" Click="DeleteVorwandCommentClickButton" ToolTip="Удалить!"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
